@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:space_shooter_workshop/game/components/components.dart';
-import 'package:space_shooter_workshop/game/game.dart';
+import 'package:space_shooter_workshop/game/game_engine.dart';
 
 class Enemy extends SpriteAnimationComponent
     with HasGameRef<SpaceShooterGame>, CollisionCallbacks {

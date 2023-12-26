@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:space_shooter_workshop/game/game.dart';
+import 'package:space_shooter_workshop/game/game_engine.dart';
 
 class ShieldCounter extends PositionComponent
     with HasGameRef<SpaceShooterGame> {

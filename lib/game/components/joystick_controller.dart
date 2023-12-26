@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
-import 'package:space_shooter_workshop/game/game.dart';
+import 'package:space_shooter_workshop/game/game_engine.dart';
 
 class JoystickController extends PositionComponent
     with HasGameRef<SpaceShooterGame> {

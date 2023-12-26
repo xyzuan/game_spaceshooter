@@ -1,7 +1,8 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:get/get.dart';
 import 'package:space_shooter_workshop/game/components/components.dart';
-import 'package:space_shooter_workshop/game/game.dart';
+import 'package:space_shooter_workshop/game/game_engine.dart';
 
 class Player extends SpriteAnimationComponent
     with HasGameRef<SpaceShooterGame>, CollisionCallbacks {
@@ -59,6 +60,11 @@ class Player extends SpriteAnimationComponent
   @override
   void update(double dt) {
     super.update(dt);
-    position += game.joystickHandler() * _speed * dt;
+    Vector2 newPosition = position + game.joystickHandler() * _speed * dt;
+
+    double newX = newPosition.x.clamp(0, Get.width);
+    double newY = newPosition.y.clamp(0, Get.height);
+
+    position = Vector2(newX, newY);
   }
 }
