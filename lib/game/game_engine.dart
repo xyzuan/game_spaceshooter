@@ -15,10 +15,7 @@ class SpaceShooterGame extends FlameGame
             Background(),
             JoystickController(),
             ScoreCounter(
-              position: Vector2(10, 20),
-            ),
-            ShieldCounter(
-              position: Vector2(220, 20),
+              position: Vector2(10, 40),
             ),
             EnemySpawner(),
             Player(),
