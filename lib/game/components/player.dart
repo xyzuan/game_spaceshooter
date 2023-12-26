@@ -1,6 +1,5 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:flutter/services.dart';
 import 'package:space_shooter_workshop/game/components/components.dart';
 import 'package:space_shooter_workshop/game/game.dart';
 
@@ -11,8 +10,8 @@ class Player extends SpriteAnimationComponent
           anchor: Anchor.center,
         );
 
-  static const _speed = 400.0;
-  final _direction = Vector2.zero();
+  static const _speed = 10.0;
+  var _direction = Vector2.all(0);
 
   @override
   Future<void> onLoad() async {
@@ -25,9 +24,6 @@ class Player extends SpriteAnimationComponent
       ),
     );
 
-    size = Vector2.all(96);
-    position = gameRef.size / 2;
-
     add(
       RectangleHitbox.relative(
         Vector2(0.8, 0.8),
@@ -35,51 +31,8 @@ class Player extends SpriteAnimationComponent
       ),
     );
 
-    add(
-      KeyboardListenerComponent(
-        keyUp: {
-          LogicalKeyboardKey.keyA: (_) {
-            _direction.x = 0;
-            return false;
-          },
-          LogicalKeyboardKey.keyD: (_) {
-            _direction.x = 0;
-            return false;
-          },
-          LogicalKeyboardKey.keyW: (_) {
-            _direction.y = 0;
-            return false;
-          },
-          LogicalKeyboardKey.keyS: (_) {
-            _direction.y = 0;
-            return false;
-          },
-          LogicalKeyboardKey.space: (_) {
-            _shoot();
-            return false;
-          },
-        },
-        keyDown: {
-          LogicalKeyboardKey.keyA: (_) {
-            _direction.x = -1;
-            return false;
-          },
-          LogicalKeyboardKey.keyD: (_) {
-            _direction.x = 1;
-            return false;
-          },
-          LogicalKeyboardKey.keyW: (_) {
-            _direction.y = -1;
-            return false;
-          },
-          LogicalKeyboardKey.keyS: (_) {
-            _direction.y = 1;
-            return false;
-          },
-          LogicalKeyboardKey.space: (_) => false,
-        },
-      ),
-    );
+    size = Vector2.all(96);
+    position = gameRef.size / 2;
   }
 
   void _shoot() {
@@ -100,15 +53,18 @@ class Player extends SpriteAnimationComponent
     if (other is Enemy) {
       other.removeFromParent();
       game.add(Explosion(position: position));
-
       game.tookHit();
     }
+  }
+
+  void setJoystickDelta(Vector2 delta) {
+    _direction = delta;
   }
 
   @override
   void update(double dt) {
     super.update(dt);
-
+    print(_direction);
     position += _direction * _speed * dt;
   }
 }

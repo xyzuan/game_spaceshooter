@@ -6,6 +6,7 @@ import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:space_shooter_workshop/game/components/components.dart';
+import 'package:space_shooter_workshop/game/components/joystick_controller.dart';
 import 'package:space_shooter_workshop/title_screen.dart';
 
 class SpaceShooterGame extends FlameGame
@@ -22,6 +23,7 @@ class SpaceShooterGame extends FlameGame
             ),
             EnemySpawner(),
             Player(),
+            JoystickController()
           ],
         );
 
