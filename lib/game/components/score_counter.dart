@@ -15,7 +15,7 @@ class ScoreCounter extends PositionComponent with HasGameRef<SpaceShooterGame> {
     textRenderer: TextPaint(
       style: GoogleFonts.pressStart2p(
         color: const Color(0xFFA2FFF3),
-        fontSize: 24,
+        fontSize: 16,
       ),
     ),
   );
@@ -47,7 +47,7 @@ class ScoreCounter extends PositionComponent with HasGameRef<SpaceShooterGame> {
           nineTitleBoxSprite,
           tileSize: 16,
         ),
-        size: Vector2(240, 64),
+        size: Vector2(180, 64),
       ),
     );
     add(_text);

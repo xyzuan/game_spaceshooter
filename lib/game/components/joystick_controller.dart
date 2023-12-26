@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flame/components.dart';
+import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
-import 'package:space_shooter_workshop/game/components/components.dart';
 import 'package:space_shooter_workshop/game/game.dart';
 
 class JoystickController extends PositionComponent
@@ -22,14 +22,22 @@ class JoystickController extends PositionComponent
 
   @override
   FutureOr<void> onLoad() async {
+    final nineTitleBoxSprite = await gameRef.loadSprite(
+      'nine_tile_box.png',
+    );
+
     add(joystick);
+    add(
+      SpriteButtonComponent(
+          onPressed: () => game.fireHandler(),
+          button: nineTitleBoxSprite,
+          size: Vector2(80, 80),
+          position: Vector2(280, 720)),
+    );
   }
 
   @override
   void update(double dt) {
     super.update(dt);
-    final delta = firstChild<Player>();
-    print(joystick.delta);
-    delta?.setJoystickDelta(joystick.delta);
   }
 }

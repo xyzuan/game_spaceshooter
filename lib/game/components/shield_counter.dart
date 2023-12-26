@@ -19,7 +19,7 @@ class ShieldCounter extends PositionComponent
     textRenderer: TextPaint(
       style: GoogleFonts.pressStart2p(
         color: const Color(0xFFA2FFF3),
-        fontSize: 24,
+        fontSize: 16,
       ),
     ),
   );
@@ -48,7 +48,7 @@ class ShieldCounter extends PositionComponent
           nineTitleBoxSprite,
           tileSize: 16,
         ),
-        size: Vector2(340, 64),
+        size: Vector2(240, 64),
       ),
     );
     add(_text);

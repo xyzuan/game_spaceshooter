@@ -11,7 +11,6 @@ class Player extends SpriteAnimationComponent
         );
 
   static const _speed = 10.0;
-  var _direction = Vector2.all(0);
 
   @override
   Future<void> onLoad() async {
@@ -35,7 +34,7 @@ class Player extends SpriteAnimationComponent
     position = gameRef.size / 2;
   }
 
-  void _shoot() {
+  void shoot() {
     gameRef.add(
       Shot(
         position: position.clone() -
@@ -57,14 +56,9 @@ class Player extends SpriteAnimationComponent
     }
   }
 
-  void setJoystickDelta(Vector2 delta) {
-    _direction = delta;
-  }
-
   @override
   void update(double dt) {
     super.update(dt);
-    print(_direction);
-    position += _direction * _speed * dt;
+    position += game.joystickHandler() * _speed * dt;
   }
 }

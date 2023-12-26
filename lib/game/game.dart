@@ -15,17 +15,27 @@ class SpaceShooterGame extends FlameGame
       : super(
           children: [
             Background(),
+            JoystickController(),
             ScoreCounter(
-              position: Vector2(10, 10),
+              position: Vector2(10, 20),
             ),
             ShieldCounter(
-              position: Vector2(286, 10),
+              position: Vector2(220, 20),
             ),
             EnemySpawner(),
             Player(),
-            JoystickController()
           ],
         );
+
+  Vector2 joystickHandler() {
+    final joystick = firstChild<JoystickController>();
+    return joystick!.joystick.delta;
+  }
+
+  void fireHandler() {
+    final player = firstChild<Player>();
+    player?.shoot();
+  }
 
   void tookHit() {
     final shieldCounter = firstChild<ShieldCounter>();
