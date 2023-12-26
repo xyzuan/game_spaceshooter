@@ -1,5 +1,6 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:space_shooter_workshop/game/game_engine.dart';
 
 class Shot extends SpriteAnimationComponent with HasGameRef<SpaceShooterGame> {
@@ -13,6 +14,7 @@ class Shot extends SpriteAnimationComponent with HasGameRef<SpaceShooterGame> {
 
   @override
   Future<void> onLoad() async {
+    FlameAudio.play('shoot.mp3');
     animation = await game.loadSpriteAnimation(
       'shoot_2.png',
       SpriteAnimationData.sequenced(
