@@ -15,7 +15,7 @@ class _MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: PageName.title,
+      initialRoute: PageName.splash,
       getPages: PageRoutes.pages,
     );
   }
