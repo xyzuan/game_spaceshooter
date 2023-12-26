@@ -1,6 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,9 +15,8 @@ class SpaceShooterGame extends FlameGame
           children: [
             Background(),
             JoystickController(),
-            ScoreCounter(
-              position: Vector2(10, 40),
-            ),
+            ShieldCounter(position: Vector2(75, 42)),
+            ScoreCounter(position: Vector2(10, 40)),
             EnemySpawner(),
             Player(),
           ],
@@ -38,6 +38,8 @@ class SpaceShooterGame extends FlameGame
       final count = shieldCounter.shieldCount;
       if (count == 0) {
         firstChild<Player>()?.removeFromParent();
+        FlameAudio.bgm.stop();
+        FlameAudio.play('gameover.mp3');
         add(
           TextComponent(
             text: 'Game Over',

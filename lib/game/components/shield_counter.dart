@@ -1,8 +1,5 @@
 import 'dart:async';
-
 import 'package:flame/components.dart';
-import 'package:flutter/widgets.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:space_shooter_workshop/game/game_engine.dart';
 
 class ShieldCounter extends PositionComponent
@@ -13,17 +10,6 @@ class ShieldCounter extends PositionComponent
   }) : super(priority: 20);
 
   final int initialShieldCount;
-  late final TextComponent _text = TextComponent(
-    position: Vector2(16, 24),
-    text: 'Shield:',
-    textRenderer: TextPaint(
-      style: GoogleFonts.pressStart2p(
-        color: const Color(0xFFA2FFF3),
-        fontSize: 16,
-      ),
-    ),
-  );
-
   int get shieldCount => children.whereType<SpriteComponent>().length;
 
   void removeShield() {
@@ -34,24 +20,9 @@ class ShieldCounter extends PositionComponent
 
   @override
   FutureOr<void> onLoad() async {
-    final nineTitleBoxSprite = await gameRef.loadSprite(
-      'nine_tile_box.png',
-    );
-
     final energyCell = await gameRef.loadSprite(
       'energy_cell.png',
     );
-
-    add(
-      NineTileBoxComponent(
-        nineTileBox: NineTileBox(
-          nineTitleBoxSprite,
-          tileSize: 16,
-        ),
-        size: Vector2(240, 64),
-      ),
-    );
-    add(_text);
 
     final initialPosition = Vector2(
       280,
