@@ -42,6 +42,7 @@ class TitleScreen extends GetView<TitleController> {
                     Expanded(
                       child: Text(
                         'Press any button to play',
+                        textAlign: TextAlign.center,
                         style: GoogleFonts.pressStart2p(
                           fontSize: 16,
                           color: const Color(0xff61d3e3),
@@ -49,6 +50,20 @@ class TitleScreen extends GetView<TitleController> {
                       ),
                     ),
                   ],
+                ),
+              ),
+            ),
+            Positioned(
+              top: 42,
+              right: 18,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.white,
+                ),
+                onPressed: () => Get.toNamed(PageName.about),
+                child: Text(
+                  'About',
+                  style: TextStyle(color: Colors.black),
                 ),
               ),
             ),
