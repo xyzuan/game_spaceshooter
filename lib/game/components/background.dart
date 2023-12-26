@@ -4,10 +4,13 @@ import 'package:flame/components.dart';
 import 'package:flame/parallax.dart';
 import 'package:flutter/widgets.dart';
 import 'package:space_shooter_workshop/game/game_engine.dart';
+import 'package:flame_audio/flame_audio.dart';
+
 
 class Background extends ParallaxComponent<SpaceShooterGame> {
   @override
   FutureOr<void> onLoad() async {
+    FlameAudio.bgm.play('musicbg.mp3');
     final parallaxImages = await Future.wait([
       game.loadParallaxImage(
         'background_nebula.png',
