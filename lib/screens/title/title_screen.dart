@@ -1,41 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:space_shooter_workshop/game/game_page.dart';
+import 'package:space_shooter_workshop/routes/pages_name.dart';
+import 'package:space_shooter_workshop/screens/title/title_controller.dart';
 
-class TitleScreen extends StatefulWidget {
+class TitleScreen extends GetView<TitleController> {
   const TitleScreen({super.key});
-
-  static MaterialPageRoute route() {
-    return MaterialPageRoute<void>(
-      builder: (_) => const TitleScreen(),
-    );
-  }
-
-  @override
-  State<TitleScreen> createState() => _TitleScreenState();
-}
-
-class _TitleScreenState extends State<TitleScreen> {
-  late final FocusNode _focusNode = FocusNode();
-
-  @override
-  void initState() {
-    super.initState();
-
-    _focusNode.requestFocus();
-  }
-
-  @override
-  void dispose() {
-    _focusNode.dispose();
-
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).push(GamePage.route()),
+      onTap: () => Get.offAndToNamed(PageName.game),
       child: Scaffold(
         body: Stack(
           children: [

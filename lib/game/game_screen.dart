@@ -1,15 +1,11 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:space_shooter_workshop/game/game.dart';
+import 'package:space_shooter_workshop/game/game_controller.dart';
 
-class GamePage extends StatelessWidget {
-  const GamePage({super.key});
-
-  static MaterialPageRoute route() {
-    return MaterialPageRoute<void>(
-      builder: (_) => const GamePage(),
-    );
-  }
+class GameScreen extends GetView<GameController> {
+  const GameScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

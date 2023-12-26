@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:space_shooter_workshop/title_screen.dart';
+import 'package:space_shooter_workshop/main_app.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  runApp(
-    const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: TitleScreen(),
-    ),
-  );
+  runApp(const MainApp());
 }

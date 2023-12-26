@@ -1,13 +1,11 @@
-import 'dart:ui';
-
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:space_shooter_workshop/game/components/components.dart';
-import 'package:space_shooter_workshop/game/components/joystick_controller.dart';
-import 'package:space_shooter_workshop/title_screen.dart';
+import 'package:space_shooter_workshop/routes/pages_name.dart';
 
 class SpaceShooterGame extends FlameGame
     with HasKeyboardHandlerComponents, HasCollisionDetection {
@@ -64,7 +62,7 @@ class SpaceShooterGame extends FlameGame
           TimerComponent(
             period: 2,
             onTick: () {
-              Navigator.of(buildContext!).pushReplacement(TitleScreen.route());
+              Get.offAndToNamed(PageName.title);
             },
           ),
         );
