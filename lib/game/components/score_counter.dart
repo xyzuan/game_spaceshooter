@@ -22,6 +22,10 @@ class ScoreCounter extends PositionComponent with HasGameRef<SpaceShooterGame> {
 
   int _score = 0;
 
+  int get score {
+    return _score;
+  }
+
   void increment() {
     _setScore(_score + 2);
   }
