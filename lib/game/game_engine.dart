@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:space_shooter_workshop/game/components/components.dart';
+import 'package:space_shooter_workshop/game/components/level_counter.dart';
 import 'package:space_shooter_workshop/routes/pages_name.dart';
 
 class SpaceShooterGame extends FlameGame
@@ -17,6 +18,7 @@ class SpaceShooterGame extends FlameGame
             JoystickController(),
             ShieldCounter(position: Vector2(75, 42)),
             ScoreCounter(position: Vector2(10, 40)),
+            LevelCounter(position: Vector2(10, 110)),
             EnemySpawner(),
             Player(),
           ],
@@ -81,5 +83,20 @@ class SpaceShooterGame extends FlameGame
   void increaseScore() {
     final scoreCounter = firstChild<ScoreCounter>();
     scoreCounter?.increment();
+  }
+
+  int getScore() {
+    final scoreCounter = firstChild<ScoreCounter>();
+    return scoreCounter!.score;
+  }
+
+  int getLevel() {
+    final levelCounter = firstChild<LevelCounter>();
+    return levelCounter!.level;
+  }
+
+  void increaseLevel() {
+    final levelCounter = firstChild<LevelCounter>();
+    levelCounter?.incrementLevel();
   }
 }

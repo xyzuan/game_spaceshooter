@@ -13,7 +13,17 @@ class Enemy extends SpriteAnimationComponent
           anchor: Anchor.center,
         );
 
-  static const _speed = 150.0;
+  int getSpeed(int level) {
+    if (level == 2) {
+      return 300;
+    } else if (level == 3) {
+      return 450;
+    } else if (level == 4) {
+      return 550;
+    } else {
+      return 150;
+    }
+  }
 
   @override
   Future<void> onLoad() async {
@@ -40,7 +50,8 @@ class Enemy extends SpriteAnimationComponent
   void update(double dt) {
     super.update(dt);
 
-    position.y += _speed * dt;
+    position.y += getSpeed(game.getLevel()) * dt;
+    print(getSpeed(game.getLevel()));
 
     if (position.y >= gameRef.size.y) {
       removeFromParent();
@@ -53,6 +64,9 @@ class Enemy extends SpriteAnimationComponent
     if (other is Shot) {
       game.add(Explosion(position: position));
       game.increaseScore();
+      if (game.getScore() % 10 == 0 && game.getScore() != 0) {
+        game.increaseLevel();
+      }
       removeFromParent();
       other.removeFromParent();
     }

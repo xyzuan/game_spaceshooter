@@ -6,3 +6,4 @@ export 'player.dart';
 export 'score_counter.dart';
 export 'shield_counter.dart';
 export 'shot.dart';
+export 'level_counter.dart';
