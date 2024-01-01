@@ -4,6 +4,8 @@ import 'package:space_shooter_workshop/game/game_screen.dart';
 import 'package:space_shooter_workshop/routes/pages_name.dart';
 import 'package:space_shooter_workshop/screens/about/about_binding.dart';
 import 'package:space_shooter_workshop/screens/about/about_screen.dart';
+import 'package:space_shooter_workshop/screens/login/login_binding.dart';
+import 'package:space_shooter_workshop/screens/login/login_screen.dart';
 import 'package:space_shooter_workshop/screens/splash/splash_binding.dart';
 import 'package:space_shooter_workshop/screens/splash/splash_screen.dart';
 import 'package:space_shooter_workshop/screens/title/title_binding.dart';
@@ -22,6 +24,13 @@ class PageRoutes {
       name: PageName.title,
       page: () => const TitleScreen(),
       binding: TitleBinding(),
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 250),
+    ),
+    GetPage(
+      name: PageName.login,
+      page: () => LoginScreen(),
+      binding: LoginBinding(),
       transition: Transition.cupertino,
       transitionDuration: const Duration(milliseconds: 250),
     ),
