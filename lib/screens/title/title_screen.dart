@@ -67,6 +67,20 @@ class TitleScreen extends GetView<TitleController> {
                 ),
               ),
             ),
+            Positioned(
+              top: 42,
+              right: 42,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.white,
+                ),
+                onPressed: () => Get.toNamed(PageName.leaderboard),
+                child: Text(
+                  'Leaderboard',
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+            ),
           ],
         ),
       ),

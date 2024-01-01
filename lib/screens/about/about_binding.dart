@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
-import 'package:space_shooter_workshop/screens/splash/splash_controller.dart';
+import 'package:space_shooter_workshop/screens/about/about_controller.dart';
 
 class AboutBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put<SplashController>(
-      SplashController(),
+    Get.put<AboutController>(
+      AboutController(),
     );
   }
 }

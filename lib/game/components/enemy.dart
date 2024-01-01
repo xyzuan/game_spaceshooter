@@ -20,6 +20,9 @@ class Enemy extends SpriteAnimationComponent
       return 450;
     } else if (level == 4) {
       return 550;
+    } else if (level == 5) {
+      game.gameWin();
+      return 0;
     } else {
       return 150;
     }
@@ -49,10 +52,7 @@ class Enemy extends SpriteAnimationComponent
   @override
   void update(double dt) {
     super.update(dt);
-
     position.y += getSpeed(game.getLevel()) * dt;
-    print(getSpeed(game.getLevel()));
-
     if (position.y >= gameRef.size.y) {
       removeFromParent();
     }

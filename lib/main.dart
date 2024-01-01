@@ -10,6 +10,6 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await Get.putAsync(() async => await SharedPreferences.getInstance());
+  await Get.putAsync(() async => SharedPreferences.getInstance());
   runApp(const MainApp());
 }

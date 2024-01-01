@@ -7,10 +7,14 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:space_shooter_workshop/game/components/components.dart';
 import 'package:space_shooter_workshop/game/components/level_counter.dart';
+import 'package:space_shooter_workshop/game/game_controller.dart';
 import 'package:space_shooter_workshop/routes/pages_name.dart';
+import 'package:space_shooter_workshop/utils/firestore_util.dart';
 
 class SpaceShooterGame extends FlameGame
     with HasKeyboardHandlerComponents, HasCollisionDetection {
+  final GameController controller = Get.put(GameController());
+
   SpaceShooterGame()
       : super(
           children: [
@@ -32,6 +36,27 @@ class SpaceShooterGame extends FlameGame
   void fireHandler() {
     final player = firstChild<Player>();
     player?.shoot();
+  }
+
+  void gameWin() {
+    FlameAudio.bgm.stop();
+    add(
+      TextComponent(
+        text: 'Game Win',
+        anchor: Anchor.center,
+        position: Vector2(
+          size.x / 2,
+          size.y / 2,
+        ),
+        textRenderer: TextPaint(
+          style: GoogleFonts.pressStart2p(
+            color: const Color(0xFFA2FFF3),
+            fontSize: 24,
+          ),
+        ),
+      ),
+    );
+    addUserToFirestore(controller.auth.currentUser?.email, getScore());
   }
 
   void tookHit() {
@@ -58,7 +83,7 @@ class SpaceShooterGame extends FlameGame
             ),
           ),
         );
-
+        addUserToFirestore(controller.auth.currentUser?.email, getScore());
         add(
           TimerComponent(
             period: 2,
