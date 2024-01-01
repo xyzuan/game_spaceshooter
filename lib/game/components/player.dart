@@ -13,6 +13,10 @@ class Player extends SpriteAnimationComponent
 
   static const _speed = 10.0;
 
+  get name => null;
+
+  get score => null;
+
   @override
   Future<void> onLoad() async {
     animation = await game.loadSpriteAnimation(
