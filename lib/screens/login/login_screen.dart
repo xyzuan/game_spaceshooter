@@ -38,111 +38,117 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              TextField(
-                controller: _emailController,
-                decoration: InputDecoration(
-                    labelText: 'Email',
-                    labelStyle:
-                        TextStyle(color: Color(0xFFFFFFFF), fontSize: 10),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF24A19C)),
-                        borderRadius: BorderRadius.circular(25)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF24A19C)),
-                        borderRadius: BorderRadius.circular(25))),
-                style: TextStyle(fontSize: 11, color: Color(0xFFFFFFFF)),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              TextField(
-                controller: _passwordController,
-                obscureText: true,
-                decoration: InputDecoration(
-                    labelText: 'Password',
-                    labelStyle:
-                        TextStyle(color: Color(0xFFFFFFFF), fontSize: 10),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF24A19C)),
-                        borderRadius: BorderRadius.circular(25)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF24A19C)),
-                        borderRadius: BorderRadius.circular(25))),
-                style: TextStyle(fontSize: 11, color: Color(0xFFFFFFFF)),
-              ),
+        Positioned(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                TextField(
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                      labelText: 'Email',
+                      labelStyle:
+                          TextStyle(color: Color(0xFFFFFFFF), fontSize: 10),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromARGB(255, 153, 36, 161)),
+                          borderRadius: BorderRadius.circular(25)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromARGB(255, 153, 36, 161)),
+                          borderRadius: BorderRadius.circular(25))),
+                  style: TextStyle(fontSize: 11, color: Color(0xFFFFFFFF)),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextField(
+                  controller: _passwordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                      labelText: 'Password',
+                      labelStyle:
+                          TextStyle(color: Color(0xFFFFFFFF), fontSize: 10),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromARGB(255, 153, 36, 161)),
+                          borderRadius: BorderRadius.circular(25)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromARGB(255, 153, 36, 161)),
+                          borderRadius: BorderRadius.circular(25))),
+                  style: TextStyle(fontSize: 11, color: Color(0xFFFFFFFF)),
+                ),
 
-              SizedBox(height: 30),
+                SizedBox(height: 30),
 
-              Obx(() {
-                return SizedBox(
-                  width: 100,
-                  height: 60,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF24A19C),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25))),
-                    onPressed: _authController.isLoading.value
-                        ? null
-                        : () {
-                            _authController.loginUser(
-                              _emailController.text,
-                              _passwordController.text,
-                            );
-                          },
-                    child: _authController.isLoading.value
-                        ? const CircularProgressIndicator()
-                        : Text(
-                            'Login',
-                            style: TextStyle(
-                                fontSize: 13, fontWeight: FontWeight.normal),
-                          ),
-                  ),
-                );
-              }),
-
-              const SizedBox(height: 30),
-
-              //SIGN UP
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Dont have an account? ",
-                    style: TextStyle(
-                      color: Color(0xFFFFFFFF),
+                Obx(() {
+                  return SizedBox(
+                    width: 100,
+                    height: 40,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromARGB(255, 153, 36, 161),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25))),
+                      onPressed: _authController.isLoading.value
+                          ? null
+                          : () {
+                              _authController.loginUser(
+                                _emailController.text,
+                                _passwordController.text,
+                              );
+                            },
+                      child: _authController.isLoading.value
+                          ? const CircularProgressIndicator()
+                          : Text(
+                              'Login',
+                              style: TextStyle(
+                                  fontSize: 13, fontWeight: FontWeight.normal),
+                            ),
                     ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.off(RegisterScreen());
-                    },
-                    child: Text(
-                      "Create ",
+                  );
+                }),
+
+                const SizedBox(height: 30),
+
+                //SIGN UP
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Dont have an account? ",
                       style: TextStyle(
-                        color: Color(0xFF24A19C),
-                        decoration: TextDecoration.underline,
-                        fontWeight: FontWeight.bold,
+                        color: Color(0xFFFFFFFF),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              // SignInButton(
-              //   Buttons.google,
-              //   onPressed: () {
-              //     _authController.handleGoogleSignIn();
+                    GestureDetector(
+                      onTap: () {
+                        Get.off(RegisterScreen());
+                      },
+                      child: Text(
+                        "Create ",
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 153, 36, 161),
+                          decoration: TextDecoration.underline,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                // SignInButton(
+                //   Buttons.google,
+                //   onPressed: () {
+                //     _authController.handleGoogleSignIn();
 
-              //     print("google onclicked");
-              //   },
-              // )
-            ],
+                //     print("google onclicked");
+                //   },
+                // )
+              ],
+            ),
           ),
         ),
       ]),
