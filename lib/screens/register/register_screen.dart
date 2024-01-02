@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:space_shooter_workshop/screens/login/login_screen.dart';
 import 'package:space_shooter_workshop/screens/register/register_controller.dart';
 
@@ -42,21 +43,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Container(
+                height: 180,
+                child: Image.asset(
+                  'assets/images/banner.png',
+                  fit: BoxFit.contain,
+                  filterQuality: FilterQuality.none,
+                ),
+              ),
               TextField(
                 controller: _emailController,
                 decoration: InputDecoration(
                     labelText: 'Email',
-                    labelStyle:
-                        TextStyle(color: Color(0xFFFFFFFF), fontSize: 10),
+                    labelStyle: GoogleFonts.pressStart2p(color: Colors.white),
                     enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 153, 36, 161)),
+                        borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(25)),
                     focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 153, 36, 161)),
+                        borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(25))),
-                style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 11),
+                style: GoogleFonts.pressStart2p(color: Colors.white),
               ),
               SizedBox(
                 height: 20,
@@ -66,28 +72,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 obscureText: true,
                 decoration: InputDecoration(
                     labelText: 'Password',
-                    labelStyle:
-                        TextStyle(color: Color(0xFFFFFFFF), fontSize: 10),
+                    labelStyle: GoogleFonts.pressStart2p(color: Colors.white),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25),
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 153, 36, 161))),
+                        borderSide: BorderSide(color: Colors.white)),
                     focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 153, 36, 161)),
+                        borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(25))),
-                style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 11),
+                style: GoogleFonts.pressStart2p(color: Colors.white),
               ),
-
               SizedBox(height: 30),
-
               Obx(() {
                 return SizedBox(
-                  width: 100,
+                  width: 160,
                   height: 40,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 153, 36, 161),
+                        backgroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25))),
                     onPressed: _authController.isLoading.value
@@ -102,24 +103,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ? const CircularProgressIndicator()
                         : Text(
                             'Register',
-                            style: TextStyle(
-                                fontSize: 13, fontWeight: FontWeight.normal),
+                            style:
+                                GoogleFonts.pressStart2p(color: Colors.black),
                           ),
                   ),
                 );
               }),
-
               const SizedBox(height: 20),
-
-              //LOGIN
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     "Already have an account? ",
-                    style: TextStyle(
-                      color: Color(0xFFFFFFFF),
-                    ),
+                    style: GoogleFonts.pressStart2p(color: Colors.white),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -127,11 +123,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                     child: Text(
                       "Login ",
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 153, 36, 161),
-                        decoration: TextDecoration.underline,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: GoogleFonts.pressStart2p(color: Colors.cyanAccent),
                     ),
                   ),
                 ],

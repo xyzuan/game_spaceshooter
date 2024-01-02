@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:space_shooter_workshop/screens/login/login_controller.dart';
 import 'package:space_shooter_workshop/screens/register/register_screen.dart';
@@ -45,21 +46,26 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                Container(
+                  height: 180,
+                  child: Image.asset(
+                    'assets/images/banner.png',
+                    fit: BoxFit.contain,
+                    filterQuality: FilterQuality.none,
+                  ),
+                ),
                 TextField(
                   controller: _emailController,
                   decoration: InputDecoration(
                       labelText: 'Email',
-                      labelStyle:
-                          TextStyle(color: Color(0xFFFFFFFF), fontSize: 10),
+                      labelStyle: GoogleFonts.pressStart2p(color: Colors.white),
                       enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 153, 36, 161)),
+                          borderSide: BorderSide(color: Colors.white),
                           borderRadius: BorderRadius.circular(25)),
                       focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 153, 36, 161)),
+                          borderSide: BorderSide(color: Colors.white),
                           borderRadius: BorderRadius.circular(25))),
-                  style: TextStyle(fontSize: 11, color: Color(0xFFFFFFFF)),
+                  style: GoogleFonts.pressStart2p(color: Colors.white),
                 ),
                 SizedBox(
                   height: 20,
@@ -69,28 +75,23 @@ class _LoginScreenState extends State<LoginScreen> {
                   obscureText: true,
                   decoration: InputDecoration(
                       labelText: 'Password',
-                      labelStyle:
-                          TextStyle(color: Color(0xFFFFFFFF), fontSize: 10),
+                      labelStyle: GoogleFonts.pressStart2p(color: Colors.white),
                       enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 153, 36, 161)),
+                          borderSide: BorderSide(color: Colors.white),
                           borderRadius: BorderRadius.circular(25)),
                       focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 153, 36, 161)),
+                          borderSide: BorderSide(color: Colors.white),
                           borderRadius: BorderRadius.circular(25))),
-                  style: TextStyle(fontSize: 11, color: Color(0xFFFFFFFF)),
+                  style: GoogleFonts.pressStart2p(color: Colors.white),
                 ),
-
                 SizedBox(height: 30),
-
                 Obx(() {
                   return SizedBox(
                     width: 100,
                     height: 40,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 153, 36, 161),
+                          backgroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25))),
                       onPressed: _authController.isLoading.value
@@ -103,50 +104,30 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                       child: _authController.isLoading.value
                           ? const CircularProgressIndicator()
-                          : Text(
-                              'Login',
-                              style: TextStyle(
-                                  fontSize: 13, fontWeight: FontWeight.normal),
-                            ),
+                          : Text('Login',
+                              style: GoogleFonts.pressStart2p(
+                                  color: Colors.black)),
                     ),
                   );
                 }),
-
                 const SizedBox(height: 30),
-
-                //SIGN UP
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       "Dont have an account? ",
-                      style: TextStyle(
-                        color: Color(0xFFFFFFFF),
-                      ),
+                      style: GoogleFonts.pressStart2p(color: Colors.white),
                     ),
                     GestureDetector(
                       onTap: () {
                         Get.off(RegisterScreen());
                       },
-                      child: Text(
-                        "Create ",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 153, 36, 161),
-                          decoration: TextDecoration.underline,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      child: Text("Create ",
+                          style: GoogleFonts.pressStart2p(
+                              color: Colors.cyanAccent)),
                     ),
                   ],
                 ),
-                // SignInButton(
-                //   Buttons.google,
-                //   onPressed: () {
-                //     _authController.handleGoogleSignIn();
-
-                //     print("google onclicked");
-                //   },
-                // )
               ],
             ),
           ),

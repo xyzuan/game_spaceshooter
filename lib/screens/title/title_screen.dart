@@ -63,7 +63,7 @@ class TitleScreen extends GetView<TitleController> {
                 onPressed: () => Get.toNamed(PageName.about),
                 child: Text(
                   'About',
-                  style: TextStyle(color: Colors.black),
+                  style: GoogleFonts.pressStart2p(color: Colors.black),
                 ),
               ),
             ),
@@ -77,7 +77,7 @@ class TitleScreen extends GetView<TitleController> {
                 onPressed: () => Get.toNamed(PageName.leaderboard),
                 child: Text(
                   'Leaderboard',
-                  style: TextStyle(color: Colors.black),
+                  style: GoogleFonts.pressStart2p(color: Colors.black),
                 ),
               ),
             ),
@@ -91,7 +91,7 @@ class TitleScreen extends GetView<TitleController> {
                 onPressed: () => controller.auth.logout(),
                 child: Text(
                   'Sign Out',
-                  style: TextStyle(color: Colors.black),
+                  style: GoogleFonts.pressStart2p(color: Colors.black),
                 ),
               ),
             ),
