@@ -21,8 +21,7 @@ class Enemy extends SpriteAnimationComponent
     } else if (level == 4) {
       return 550;
     } else if (level == 5) {
-      game.gameWin();
-      return 0;
+      return 550;
     } else {
       return 150;
     }

@@ -28,6 +28,9 @@ class LevelCounter extends PositionComponent with HasGameRef<SpaceShooterGame> {
 
   void incrementLevel() {
     _setLevel(level + 1);
+    if (game.getLevel() == 5) {
+      game.gameWin();
+    }
   }
 
   void clear() {

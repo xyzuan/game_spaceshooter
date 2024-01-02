@@ -32,7 +32,6 @@ class LeaderboardScreen extends GetView<LeaderboardController> {
                     padding: const EdgeInsets.all(32.0),
                     child: Text(
                       'Leaderboard',
-                      textAlign: TextAlign.center,
                       style: GoogleFonts.pressStart2p(
                         fontSize: 32,
                         color: Colors.white,
@@ -40,51 +39,80 @@ class LeaderboardScreen extends GetView<LeaderboardController> {
                     ),
                   ),
                   Container(
-                    height: null,
-                    child: StreamBuilder<QuerySnapshot>(
-                      stream: controller.firestore
-                          .collection('leaderboard')
-                          .orderBy('score', descending: true)
-                          .snapshots(),
-                      builder: (context, snapshot) {
-                        if (!snapshot.hasData) {
-                          return Center(child: CircularProgressIndicator());
-                        }
+                      height: null,
+                      child: StreamBuilder<QuerySnapshot>(
+                        stream: controller.firestore
+                            .collection('leaderboard')
+                            .orderBy('score', descending: true)
+                            .limit(5)
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData) {
+                            return Center(child: CircularProgressIndicator());
+                          }
 
-                        final documents = snapshot.data!.docs;
+                          final documents = snapshot.data!.docs;
 
-                        return ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: documents.length,
-                          itemBuilder: (context, index) {
-                            final doc = documents[index];
-                            return Card(
-                              child: Padding(
-                                padding: const EdgeInsets.all(18.0),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      doc['user'].toString(),
-                                      style: GoogleFonts.pressStart2p(
-                                        fontSize: 16,
+                          documents.sort((a, b) {
+                            final int scoreA = a['score'] as int;
+                            final int scoreB = b['score'] as int;
+
+                            final int timeA = (a['time'] as num).toInt();
+                            final int timeB = (b['time'] as num).toInt();
+
+                            final scoreComparison = scoreB.compareTo(scoreA);
+                            if (scoreComparison != 0) {
+                              return scoreComparison;
+                            }
+
+                            return timeA.compareTo(timeB);
+                          });
+
+                          return ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: documents.length,
+                            itemBuilder: (context, index) {
+                              final doc = documents[index];
+                              return Card(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(18.0),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text(
+                                            doc['user'].toString(),
+                                            style: GoogleFonts.pressStart2p(
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                          Spacer(),
+                                          Text(
+                                            doc['score'].toString(),
+                                            style: GoogleFonts.pressStart2p(
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                    Spacer(),
-                                    Text(
-                                      doc['score'].toString(),
-                                      style: GoogleFonts.pressStart2p(
-                                        fontSize: 16,
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 18),
+                                        child: Text(
+                                          double.parse(doc['time'].toString())
+                                              .toStringAsFixed(1),
+                                          style: GoogleFonts.pressStart2p(
+                                            fontSize: 16,
+                                          ),
+                                        ),
                                       ),
-                                    )
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    ),
-                  )
+                              );
+                            },
+                          );
+                        },
+                      ))
                 ],
               )),
         ],

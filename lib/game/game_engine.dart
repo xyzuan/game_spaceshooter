@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:space_shooter_workshop/game/components/components.dart';
 import 'package:space_shooter_workshop/game/components/level_counter.dart';
+import 'package:space_shooter_workshop/game/components/time.dart';
 import 'package:space_shooter_workshop/game/game_controller.dart';
 import 'package:space_shooter_workshop/routes/pages_name.dart';
 import 'package:space_shooter_workshop/utils/firestore_util.dart';
@@ -23,6 +24,7 @@ class SpaceShooterGame extends FlameGame
             ShieldCounter(position: Vector2(75, 42)),
             ScoreCounter(position: Vector2(10, 40)),
             LevelCounter(position: Vector2(10, 110)),
+            Time(position: Vector2(310, 110)),
             EnemySpawner(),
             Player(),
           ],
@@ -56,7 +58,21 @@ class SpaceShooterGame extends FlameGame
         ),
       ),
     );
-    addUserToFirestore(controller.auth.currentUser?.email, getScore());
+    bool isFirestoreUpdated = false;
+
+    if (!isFirestoreUpdated) {
+      addUserToFirestore(
+          controller.auth.currentUser?.email, getScore(), getTime());
+      isFirestoreUpdated = true;
+    }
+    add(
+      TimerComponent(
+        period: 2,
+        onTick: () {
+          Get.offAndToNamed(PageName.title);
+        },
+      ),
+    );
   }
 
   void tookHit() {
@@ -83,7 +99,8 @@ class SpaceShooterGame extends FlameGame
             ),
           ),
         );
-        addUserToFirestore(controller.auth.currentUser?.email, getScore());
+        addUserToFirestore(
+            controller.auth.currentUser?.email, getScore(), getTime());
         add(
           TimerComponent(
             period: 2,
@@ -118,6 +135,11 @@ class SpaceShooterGame extends FlameGame
   int getLevel() {
     final levelCounter = firstChild<LevelCounter>();
     return levelCounter!.level;
+  }
+
+  double getTime() {
+    final timeCounter = firstChild<Time>();
+    return timeCounter!.time;
   }
 
   void increaseLevel() {
