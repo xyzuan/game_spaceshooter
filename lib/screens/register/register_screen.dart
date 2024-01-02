@@ -37,9 +37,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               TextField(
@@ -49,10 +49,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     labelStyle:
                         TextStyle(color: Color(0xFFFFFFFF), fontSize: 10),
                     enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF24A19C)),
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 153, 36, 161)),
                         borderRadius: BorderRadius.circular(25)),
                     focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF24A19C)),
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 153, 36, 161)),
                         borderRadius: BorderRadius.circular(25))),
                 style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 11),
               ),
@@ -68,9 +70,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         TextStyle(color: Color(0xFFFFFFFF), fontSize: 10),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25),
-                        borderSide: BorderSide(color: Color(0xFF24A19C))),
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 153, 36, 161))),
                     focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF24A19C)),
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 153, 36, 161)),
                         borderRadius: BorderRadius.circular(25))),
                 style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 11),
               ),
@@ -80,10 +84,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Obx(() {
                 return SizedBox(
                   width: 100,
-                  height: 60,
+                  height: 40,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF24A19C),
+                        backgroundColor: Color.fromARGB(255, 153, 36, 161),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25))),
                     onPressed: _authController.isLoading.value
@@ -124,7 +128,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: Text(
                       "Login ",
                       style: TextStyle(
-                        color: Color(0xFF24A19C),
+                        color: Color.fromARGB(255, 153, 36, 161),
                         decoration: TextDecoration.underline,
                         fontWeight: FontWeight.bold,
                       ),
