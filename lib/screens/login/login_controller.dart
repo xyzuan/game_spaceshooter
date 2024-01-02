@@ -1,4 +1,3 @@
-// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,19 +19,6 @@ class LoginController extends GetxController {
     checkLoginStatus();
   }
 
-  Future<void> handleGoogleSignIn() async {
-    try {
-      GoogleAuthProvider _googleAuthProvider = GoogleAuthProvider();
-      _auth.signInWithProvider(_googleAuthProvider);
-      Get.snackbar('Success', 'Login successful',
-          backgroundColor: Colors.green);
-      isLoggedIn.value = true;
-      Get.offAllNamed("/title");
-    } catch (error) {
-      print(error);
-    }
-  }
-
   Future<void> checkLoginStatus() async {
     isLoggedIn.value = _prefs.containsKey('user_token');
   }
@@ -44,20 +30,27 @@ class LoginController extends GetxController {
         email: email,
         password: password,
       );
-      _prefs.setString(
-          'user_token', _auth.currentUser!.uid); // Simpan token autentikasi
+      _prefs.setString('user_token', _auth.currentUser!.uid);
 
       Get.snackbar('Success', 'Login successful',
           backgroundColor: Colors.green);
 
-      isLoggedIn.value = true; // Set status login menjadi true
+      isLoggedIn.value = true;
 
-      Get.offAllNamed("/title"); // Navigate ke HomePage atau ArticlePage dan hapus semua halaman sebelumnya
+      Get.offAllNamed("/title");
     } catch (error) {
       Get.snackbar('Error', 'Login failed: $error',
           backgroundColor: Colors.red);
     } finally {
       isLoading.value = false;
     }
+  }
+
+  void logout() {
+    _prefs.remove('user_token');
+    isLoggedIn.value = false;
+    _auth.signOut();
+
+    Get.offAllNamed('/login');
   }
 }

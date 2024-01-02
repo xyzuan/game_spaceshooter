@@ -25,7 +25,6 @@ class LeaderboardScreen extends GetView<LeaderboardController> {
           ),
           Positioned.fill(
               top: 42,
-              right: 18,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -41,7 +40,7 @@ class LeaderboardScreen extends GetView<LeaderboardController> {
                     ),
                   ),
                   Container(
-                    height: 150,
+                    height: null,
                     child: StreamBuilder<QuerySnapshot>(
                       stream: controller.firestore
                           .collection('leaderboard')
@@ -55,6 +54,7 @@ class LeaderboardScreen extends GetView<LeaderboardController> {
                         final documents = snapshot.data!.docs;
 
                         return ListView.builder(
+                          shrinkWrap: true,
                           itemCount: documents.length,
                           itemBuilder: (context, index) {
                             final doc = documents[index];

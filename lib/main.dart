@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:space_shooter_workshop/configs/firebase_options.dart';
@@ -11,5 +12,8 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await Get.putAsync(() async => SharedPreferences.getInstance());
-  runApp(const MainApp());
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(const MainApp());
+  });
 }
